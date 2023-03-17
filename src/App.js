@@ -1,26 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-import OffersList from './components/OffersList';
-
+import customTheme from "./theme";
+import React from "react";
+import OffersList from "./components/OffersList";
+import { StyledEngineProvider } from "@mui/joy/styles";
+import { CssVarsProvider, useColorScheme } from "@mui/joy/styles";
+import CssBaseline from "@mui/joy/CssBaseline";
 function App() {
   return (
-    <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save tooo reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <React.StrictMode>
+      <StyledEngineProvider injectFirst>
+        <CssVarsProvider
+          defaultMode="dark"
+          disableTransitionOnChange
+          theme={customTheme}
         >
-          Learn React
-        </a>
-      </header> */}
-      <OffersList/>
-    </div>
+          <CssBaseline />
+          <OffersList />
+        </CssVarsProvider>
+      </StyledEngineProvider>
+    </React.StrictMode>
   );
 }
 
