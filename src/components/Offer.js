@@ -1,8 +1,7 @@
 export function Offer(props) {
-    return (
-      <h1>
-         Hello, {props.first} {props.last}
-      </h1>
-    );
-  }
-
+  return (
+    <h1>
+      Hello, {props.position} {props.price}
+    </h1>
+  );
+}
