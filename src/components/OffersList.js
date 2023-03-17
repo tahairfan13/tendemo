@@ -31,6 +31,7 @@ function OffersList() {
           {LISTDATA.offers.map((offer) => {
             return (
               <Offer
+                key={offer.position}
                 outgoing_link={offer.outgoing_link}
                 image_data={offer.image_data}
                 title={offer.title}
