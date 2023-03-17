@@ -5,11 +5,40 @@ import AspectRatio from "@mui/joy/AspectRatio";
 import CardContent from "@mui/joy/CardContent";
 import CardOverflow from "@mui/joy/CardOverflow";
 import Divider from "@mui/joy/Divider";
+import React from "react";
+import _ from "lodash";
 
 const makeAspectRatio = (width, height) => {
   // console.log(width);
   // console.log(height);
   return width + "/" + height;
+};
+const bestPriceFormatted = (price) => {
+  let roundedAsString = price.toString();
+  //console.log(roundedAsString);
+
+  if (roundedAsString.slice(-2) === ".5") {
+    roundedAsString = roundedAsString.replace(".5", "½");
+  }
+
+  if (roundedAsString.slice(-2) === ".0") {
+    roundedAsString = roundedAsString.replace(".0", "");
+  }
+  const hash = { symbol: "", price: "" };
+  let symbol = "$";
+
+  hash.symbol = symbol;
+  hash.price = roundedAsString;
+  // console.log(hash);
+  return hash;
+};
+
+const truncateText = (text) => {
+  // only do this when necessary, maybe do this with css instead?
+  return _.truncate(text, {
+    length: 50,
+    separator: /,?\.* +/,
+  });
 };
 
 export function Offer(props) {
@@ -18,25 +47,7 @@ export function Offer(props) {
     props.image_data.height
   );
   // console.log(aspectRatio);
-  const bestPriceFormatted = (price) => {
-    let roundedAsString = price.toString();
-    //console.log(roundedAsString);
 
-    if (roundedAsString.slice(-2) === ".5") {
-      roundedAsString = roundedAsString.replace(".5", "½");
-    }
-
-    if (roundedAsString.slice(-2) === ".0") {
-      roundedAsString = roundedAsString.replace(".0", "");
-    }
-    const hash = { symbol: "", price: "" };
-    let symbol = "$";
-
-    hash.symbol = symbol;
-    hash.price = roundedAsString;
-    // console.log(hash);
-    return hash;
-  };
   return (
     <Card
       orientation="horizontal"
@@ -79,7 +90,7 @@ export function Offer(props) {
           {bestPriceFormatted(props.price).price}
         </Typography>
         <Box>
-          <Typography level="body2">{props.title}</Typography>
+          <Typography level="body2">{truncateText(props.title)}</Typography>
         </Box>
       </CardContent>
       <Divider />
