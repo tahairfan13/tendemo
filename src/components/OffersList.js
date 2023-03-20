@@ -2,7 +2,7 @@ import { LISTDATA } from "../mockList";
 import { Offer } from "./Offer";
 import React from "react";
 import Box from "@mui/joy/Box";
-import { Card, Chip, Typography, Stack } from "@mui/joy";
+import { Card, Chip, Typography, Stack, Grid } from "@mui/joy";
 
 // {
 //     "outgoing_link": "https://www.amazon.com/exec/obidos/ASIN/B003TJHTIK/",
@@ -27,7 +27,7 @@ function OffersList() {
         <Card variant="outlined" sx={{ mb: 2, mt: 2 }}>
           <Typography level="h1">{LISTDATA.title}</Typography>
         </Card>
-        <Stack spacing={2} sx={{ width: "100%" }}>
+        <Grid container spacing={2} sx={{ flexGrow: 1 }}>
           {LISTDATA.offers.map((offer) => {
             return (
               <Offer
@@ -40,7 +40,7 @@ function OffersList() {
               />
             );
           })}
-        </Stack>
+        </Grid>
         {/* <pre>{JSON.stringify(LISTDATA, null, " ")}</pre>
       <Offer first="Srini" last="Kata" /> */}
       </Box>

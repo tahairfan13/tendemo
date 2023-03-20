@@ -23,6 +23,7 @@ function Search() {
           <Autocomplete
             freeSolo
             size="lg"
+            filterOptions={(x) => x}
             autoFocus={true}
             open={true}
             clearOnBlur={false}
