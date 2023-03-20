@@ -5,19 +5,18 @@ import { StyledEngineProvider } from "@mui/joy/styles";
 import { CssVarsProvider, useColorScheme } from "@mui/joy/styles";
 import CssBaseline from "@mui/joy/CssBaseline";
 import Button from "@mui/joy/Button";
-
-
-
+import Search from "./components/Search";
+import { Box } from "@mui/joy";
 
 function App() {
   function ModeSwitcher() {
     const { mode, setMode } = useColorScheme();
     const [mounted, setMounted] = React.useState(false);
-  
+
     React.useEffect(() => {
       setMounted(true);
     }, []);
-  
+
     if (!mounted) {
       return null;
     }
@@ -25,9 +24,9 @@ function App() {
       <Button
         variant="outlined"
         color="neutral"
-        onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
+        onClick={() => setMode(mode === "dark" ? "light" : "dark")}
       >
-        {mode === 'dark' ? 'Turn light' : 'Turn dark'}
+        {mode === "dark" ? "Turn light" : "Turn dark"}
       </Button>
     );
   }
@@ -40,10 +39,20 @@ function App() {
           disableTransitionOnChange
           theme={customTheme}
         >
-        
           <CssBaseline />
           <ModeSwitcher />
-          <OffersList />
+          <Box
+            sx={{
+              bgcolor: "background.appBody",
+              minHeight: "100dvh",
+              width: "100vw",
+              maxWidth: "100%",
+              px: 2,
+            }}
+          >
+            <OffersList />
+            {/* <Search /> */}
+          </Box>
         </CssVarsProvider>
       </StyledEngineProvider>
     </React.StrictMode>
