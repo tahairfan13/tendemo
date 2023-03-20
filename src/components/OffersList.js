@@ -27,7 +27,13 @@ function OffersList() {
         <Card variant="outlined" sx={{ mb: 2, mt: 2 }}>
           <Typography level="h1">{LISTDATA.title}</Typography>
         </Card>
-        <Grid container spacing={2} sx={{ flexGrow: 1 }}>
+        <Grid
+          container
+          spacing={2}
+          sx={{ flexGrow: 1 }}
+          gap={3}
+          justifyContent="center"
+        >
           {LISTDATA.offers.map((offer) => {
             return (
               <Offer

@@ -1,4 +1,4 @@
-import { Card, Chip, Typography } from "@mui/joy";
+import { Card, CardCover, Chip, Typography } from "@mui/joy";
 import Box from "@mui/joy/Box";
 import AspectRatio from "@mui/joy/AspectRatio";
 
@@ -50,33 +50,84 @@ export function Offer(props) {
 
   return (
     <Card
-      orientation="horizontal"
+      orientation="vertical"
       variant="outlined"
       key={props.position}
-      sx={{ minHeight: "60px" }}
+      sx={{
+        minHeight: "60px",
+        width: "400px",
+        height: "400px",
+        padding: "0",
+        alignItems: "center",
+      }}
     >
-      <CardOverflow>
-        <AspectRatio
-          ratio={aspectRatio}
-          sx={{
-            width: "42vw",
-            maxWidth: props.image_data.width,
-          }}
+      <CardCover>
+        <img
+          src={props.image_data.url}
+          height={props.image_data.height}
+          width={props.image_data.width}
+          alt={props.title}
+          loading="lazy"
+          style={{ objectFit: "contain" }}
+        />
+      </CardCover>
+      <CardCover
+        sx={{
+          background:
+            "linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0) 200px), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 300px)",
+        }}
+      />
+      <CardContent
+        sx={{
+          justifyContent: "flex-end",
+          paddingInline: "8%",
+          paddingBottom: "3%",
+          gap: "5px",
+        }}
+      >
+        <Box>
+          <Typography level="h2" fontSize="lg" textColor="common.white">
+            {truncateText(props.title)}
+          </Typography>
+        </Box>{" "}
+        <Typography
+          level="h2"
+          fontSize="xxl"
+          mb={0.5}
+          sx={{ color: "#4BB543" }}
         >
-          <img
-            src={props.image_data.url}
-            height={props.image_data.height}
-            width={props.image_data.width}
-            // src={
-            //   "https://tenup.s3.us-east-1.amazonaws.com/images/1e6c1d2f18da9ab9.jpg"
-            // }
-            // srcSet="https://images.unsplash.com/photo-1507833423370-a126b89d394b?auto=format&fit=crop&w=90&dpr=2 2x"
-
-            alt={props.title}
-          />
-        </AspectRatio>
+          <Typography
+            level="h2"
+            fontSize="md"
+            sx={{ opacity: 0.75 }}
+            textColor={"common.white"}
+          >
+            about{" "}
+          </Typography>{" "}
+          {bestPriceFormatted(props.price).symbol}{" "}
+          {bestPriceFormatted(props.price).price}
+        </Typography>
+      </CardContent>
+      <CardOverflow
+        variant="soft"
+        color="primary"
+        sx={{
+          px: 1,
+          textAlign: "center",
+          fontSize: "md",
+          // px: 2,
+          fontWeight: "md",
+          paddingBlock: "10px",
+          letterSpacing: "1px",
+          width: "100%",
+        }}
+      >
+        <Typography sx={{ textTransform: "uppercase" }}>get it now</Typography>
+        <Typography sx={{ opacity: "0.7" }} fontSize="xs" fontWeight="400">
+          amazon
+        </Typography>
       </CardOverflow>
-      <CardContent sx={{ px: 2 }}>
+      {/* <CardContent sx={{ px: 2 }}>
         <Typography
           level="h2"
           fontSize="xl"
@@ -93,20 +144,8 @@ export function Offer(props) {
           <Typography level="body2">{truncateText(props.title)}</Typography>
         </Box>
       </CardContent>
-      <Divider />
-      <CardOverflow
-        variant="soft"
-        color="primary"
-        sx={{
-          px: 1,
-          writingMode: "vertical-rl",
-          textAlign: "center",
-          fontSize: "md",
-          // px: 2,
-          fontWeight: "xl2",
-          letterSpacing: "1px",
-        }}
-      >
+      <Divider /> */}
+      {/* <Box>
         <Typography sx={{ textTransform: "uppercase" }}>get it now</Typography>
         <Chip
           color="neutral"
@@ -117,7 +156,7 @@ export function Offer(props) {
         >
           amazon
         </Chip>
-      </CardOverflow>
+      </Box> */}
     </Card>
   );
 }
